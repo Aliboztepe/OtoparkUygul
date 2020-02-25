@@ -1,0 +1,108 @@
+// Kodu Çalıştıracağımız Ana Class'ımızın Kodları
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Sınıflar
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+          while (true)
+            {
+
+            OtoparkUygulamasi otoparkUygulamasi = new OtoparkUygulamasi();
+            otoparkUygulamasi.Calistir();
+
+            }
+
+        }
+    }
+}
+
+//Diğer Class'ın kodlarıda aşağıda.
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Sınıflar
+{
+    class OtoparkUygulamasi
+    {
+        private int GenelTutar;
+        private int AracSayisi;
+        public enum Tur
+        {
+            Otomobil,
+            Otobüs,
+            Kamyonet,
+            Kamyon,
+            GenelToplam
+
+        }
+
+        public void Calistir()
+        {
+
+            Console.WriteLine("Otopark Uygulamasına Hoşgeldiniz.");
+        enbasa:
+            Console.WriteLine("1-Otomobil");
+            Console.WriteLine("2-Otobüs");
+            Console.WriteLine("3-Kamyonet");
+            Console.WriteLine("4-Kamyon");
+            Console.WriteLine("5-Genel Toplam Para");
+            Console.WriteLine("Lütfen Seçiminizi Kategorilerin Numarasını Seçerek Yapınız.");
+            int secim = Convert.ToInt32(Console.ReadLine());
+            
+            Console.WriteLine("Aracın Kaldığı Saat Süresini Giriniz:");
+            int sure = Convert.ToInt32(Console.ReadLine());
+        
+            
+            CikisYap((Tur)secim - 1, sure);
+            goto enbasa;
+
+
+        }
+
+        public void CikisYap(Tur tur, int saat)
+        {
+
+            int tutar = 0;
+
+            switch (tur)
+            {
+                case Tur.Otomobil:
+                    tutar = saat * 10;
+                    break;
+                case Tur.Otobüs:
+                    tutar = saat * 20;
+                    break;
+                case Tur.Kamyonet:
+                    tutar = saat * 30;
+                    break;
+                case Tur.Kamyon:
+                    tutar = saat * 30;
+                    break;
+                case Tur.GenelToplam:
+                    Console.WriteLine($"Giriş Yapan Araç Sayısı : {AracSayisi} Ve Toplam Tutar : {GenelTutar} ");
+                    return;
+
+            }
+
+            AracSayisi++;
+            GenelTutar += tutar;
+            Console.WriteLine($"Araç Türü : {tur} ve Kalınan Saat : {saat} ve Tutar : {tutar} ");
+        }
+
+
+    }
+}
